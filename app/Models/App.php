@@ -5,8 +5,10 @@ class App extends Prefab{
       
   }
   function locationDetails(){
-    return F3::get('dB')->exec('select * from location limit 1');
-    
+    //return F3::get('dB')->exec('select * from location limit 1');
+    $location=new DB\SQL\Mapper(F3::get('dB'),'location');
+    return $location->load();
+      
   }
   
 
