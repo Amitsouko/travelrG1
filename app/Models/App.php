@@ -16,6 +16,14 @@ class App extends Prefab{
     return $pictures->find(array('idLocation=?',$idLocation));
   }
   
+  function next($id){  
+    return F3::get('dB')->exec("select id, title from location where id =(select min(id) from location where id > ".$id.")");
+  }
+  
+  function prev($id){
+    return F3::get('dB')->exec("select id, title from location where id =(select max(id) from location where id < ".$id.")");
+  }
+  
 
   function __destruct(){
 
