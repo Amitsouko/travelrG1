@@ -19,14 +19,12 @@ class App_controller{
     $next=$App->next($location->id);
     $prev=$App->prev($location->id);
     
+
     $p=$prev?$prev[0]['id'].'-'.$prev[0]['title']:'';
     $n=$next?$next[0]['id'].'-'.$next[0]['title']:'';
 
     F3::set('prev',$p);
     F3::set('next',$n);
-    
-    
-    //F3::set('location',App::instance()->locationDetails(););
     
     echo Views::instance()->render('travelr.html');
  }
