@@ -10,6 +10,7 @@ class App_controller{
     $location=$App->locationDetails();
     F3::set('location',$location);
     
+    
     //F3::set('location',App::instance()->locationDetails(););
     
     echo Views::instance()->render('travelr.html');
