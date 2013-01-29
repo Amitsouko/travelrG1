@@ -25,7 +25,13 @@ class App_controller{
 
     F3::set('prev',$p);
     F3::set('next',$n);
+<<<<<<< HEAD
+=======
 
+    
+    
+    //F3::set('location',App::instance()->locationDetails(););
+>>>>>>> 076fd6b5ad5e22b882f31371f6c740d72015e9aa
     
     echo Views::instance()->render('travelr.html');
  }
