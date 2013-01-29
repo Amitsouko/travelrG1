@@ -25,6 +25,7 @@ class App_controller{
 
     F3::set('prev',$p);
     F3::set('next',$n);
+
     
     echo Views::instance()->render('travelr.html');
  }
