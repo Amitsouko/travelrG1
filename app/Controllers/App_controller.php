@@ -6,9 +6,10 @@ class App_controller{
  }
  
  function home(){
+    $id=F3::get('PARAMS.id');
     #récupération de la location
     $App=new App();
-    $location=$App->locationDetails();
+    $location=$App->locationDetails($id);
     F3::set('location',$location);
     
     #récupération des images de la location
@@ -25,7 +26,6 @@ class App_controller{
 
     F3::set('prev',$p);
     F3::set('next',$n);
-
     
     echo Views::instance()->render('travelr.html');
  }

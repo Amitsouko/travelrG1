@@ -4,10 +4,13 @@ class App extends Prefab{
   function __construct(){
       
   }
-  function locationDetails(){
+  function locationDetails($id=null){
     //return F3::get('dB')->exec('select * from location limit 1');
     $location=new DB\SQL\Mapper(F3::get('dB'),'location');
-    return $location->load();
+    if(!$id){
+      return $location->load();
+    }
+    return $location->load(array('id=?',$id));
   }
   
   function locationPictures($idLocation){
