@@ -21,8 +21,6 @@ function slide(data) {
 
 function drawMap(position){
 	
-	var travelrStyle = [{featureType: "all",stylers: [{ saturation: -100 }]}];
-  var travelrType = new google.maps.StyledMapType(travelrStyle,{name: "travelr"});
 	var LatLng=new google.maps.LatLng(position.lat,position.lng);
 	
 	var mapOptions = {
@@ -32,20 +30,19 @@ function drawMap(position){
     zoomControl:false,
     scaleControl: false,
     center: LatLng,
-    mapTypeControlOptions: {mapTypeIds: [google.maps.MapTypeId.ROADMAP, 'travelr']}
+		styles:[{"stylers": [{ "saturation": -100 }]}],
+    mapTypeId: google.maps.MapTypeId.ROADMAP
   };
 	
 	var map = new google.maps.Map(document.getElementById('map_canvas'),mapOptions);
-  map.mapTypes.set('travelr', travelrType);
-  map.setMapTypeId('travelr');
-	var markerLatLng=LatLng;
-	 var image='public/css/img/marker.png';
-    var marker = new google.maps.Marker({
-          position: markerLatLng,
+  var image='public/css/img/marker.png';
+  var marker = new google.maps.Marker({
+          position: LatLng,
           map: map,
           icon:image
       });
 }
+
 
 function toggleMap(){
 	$('div.map').toggleClass('on');
