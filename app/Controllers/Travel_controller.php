@@ -10,7 +10,7 @@ class Travel_controller{
    }
   
   function post(){
-    //F3::set('errorMsg',null);
+    F3::set('errorMsg',null);
     $check=array(
       'firstname'=>'required',
       'lastname'=>'required',
@@ -19,10 +19,11 @@ class Travel_controller{
     );
     $error=Datas::instance()->check(F3::get('POST'),$check);
     if($error){
-      print_r($error);
+      F3::set('errorMsg',$error);
     }
     else{
-       echo 'form ok';
+      //$user=new App;
+      //$user->record();
     }
   }
   
