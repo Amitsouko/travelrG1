@@ -36,10 +36,9 @@
       <h1>Borneo Travel's<a href="admin/new"><i class="icon-plus"></i></a></h1>
       
       <ul>
-        <li>title<a href="admin/1/edit"><i class="icon-pen "></i></a><a href="admin/1/delete" class=""><i class="icon-check_circle "></i></a></li>
-        <li>title<a href="admin/1/edit"><i class="icon-pen "></i></a><a href="admin/1/delete" class=""><i class="icon-check_circle "></i></a></li>
-        <li>title<a href="admin/1/edit"><i class="icon-pen "></i></a><a href="admin/1/delete" class=""><i class="icon-check_circle "></i></a></li>
-        
+        <?php foreach($location as $item): ?>
+        <li><?php echo $item->title ?><a href="admin/<?php echo $item->id ?>/edit"><i class="icon-pen "></i></a><a href="admin/<?php echo $item->id ?>/delete" class=""><i class="icon-check_circle "></i></a></li>
+        <?php endforeach; ?>
       </ul>
     </div>
     
