@@ -36,12 +36,11 @@
       <h1></h1>
       <form action="" method="post" enctype="multipart/form-data">
         <fieldset>
-        <span class="error"></span>
-        <input type="text" name="title" placeholder="Title" value=""/>
-        <textarea name="content" rows="8" cols="15"></textarea>
+        <input type="text" name="title" placeholder="Title" value="" <?php if($errorMsg['title']){ echo 'class="error"';} ?>/>
+        <textarea name="content" rows="8" cols="15"<?php if($errorMsg['content']){ echo 'class="error"';} ?>></textarea>
         <fieldset class="geocoder">
           
-          <input type="text" name="position" placeholder="localisation" value="" id="position"/>
+          <input type="text" name="position" placeholder="localisation" value="" id="position" <?php if($errorMsg['lat']||$errorMsg['lng']){ echo 'class="error"';} ?>/>
           <a href="" id="search-position"><i class="icon-magnifying icon2x"></i></a>
           
           <div id="map_canvas">

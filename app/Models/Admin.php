@@ -11,5 +11,22 @@ class Admin extends Prefab{
     return $location->find();
   }
   
+  function create(){
+    $location=new DB\SQL\Mapper(F3::get('dB'),'location');
+    $location->copyFrom('POST');
+    $location->save();
+    
+    $image=Web::instance()->receive();
+    if($image){
+      $pictures=new DB\SQL\Mapper(F3::get('dB'),'pictures');
+      $pictures->src=$image;
+      $pictures->idLocation=$location->id;
+      $pictures->save();
+    }
+    
+    
+  }
+  
+  
 }
 ?>
