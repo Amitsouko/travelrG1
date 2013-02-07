@@ -12,13 +12,15 @@ class App_controller{
     $location=$App->locationDetails($id);
     F3::set('location',$location);
     
-    F3::set('position',Views::instance()->toJson($location,array('lat'=>'lat','lng'=>'lng')));
+    if(F3::get('AJAX')){
+      $ajax['coords']['lat']=$location->lat;
+      $ajax['coords']['lng']=$location->lng;
+      $pictures=App::instance()->locationPictures($location->id);
+      $ajax['pictures']=array_map(function($item){return array('image'=>$item->src);},$pictures);
+      echo json_encode($ajax);
+      return;
+    }
     
-    
-    #récupération des images de la location
-    $pictures=$App->locationPictures($location->id);
-    $json=Views::instance()->toJson($pictures,array('image'=>'src'));
-    F3::set('pictures',$json);
     
     $next=$App->next($location->id);
     $prev=$App->prev($location->id);

@@ -1,10 +1,10 @@
 $(function(){
-	if(datas){
-		slide(datas);
-	}
-	if(position){
-		drawMap(position);
-	}
+	//$.ajax({url:location.href,dataType:'json'})
+	$.getJSON(location.href)
+	.success(function(response){
+		slide(response.pictures);
+		drawMap(response.coords);
+	});
 	$('.main .map, .map .close').bind('click',toggleMap);
 });
 
