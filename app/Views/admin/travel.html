@@ -36,24 +36,25 @@
       <h1></h1>
       <form action="" method="post" enctype="multipart/form-data">
         <fieldset>
-        <input type="text" name="title" placeholder="Title" value="" <?php if($errorMsg['title']){ echo 'class="error"';} ?>/>
-        <textarea name="content" rows="8" cols="15"<?php if($errorMsg['content']){ echo 'class="error"';} ?>></textarea>
+        
+        <input type="text" name="title" placeholder="Title" value="<?php echo $location->title ?>" <?php if($errorMsg['title']){ echo 'class="error"'; } ?>/>
+        <textarea name="content" rows="8" cols="15"<?php if($errorMsg['content']){ echo 'class="error"'; } ?>><?php echo $location->content ?></textarea>
         <fieldset class="geocoder">
-          
-          <input type="text" name="position" placeholder="localisation" value="" id="position" <?php if($errorMsg['lat']||$errorMsg['lng']){ echo 'class="error"';} ?>/>
-          <a href="" id="search-position"><i class="icon-magnifying icon2x"></i></a>
-          
+          <?php if(!$location): ?>
+          <input type="text" name="position" placeholder="localisation" value="" id="position" <?php if($errorMsg['lat']||$errorMsg['lng']){ echo 'class="error"'; } ?>/><a href="" id="search-position"><i class="icon-magnifying icon2x"></i></a>
+          <?php endif; ?>
           <div id="map_canvas">
             
           </div>
-          <input type="hidden" name="lat" value="" id="lat" />
-          <input type="hidden" name="lng" value="" id="lng" />
+          <input type="hidden" name="lat" value="<?php echo $location->lat ?>" id="lat" />
+          <input type="hidden" name="lng" value="<?php echo $location->lng ?>" id="lng" />
         </fieldset>
         <fieldset class="images">
-          <img height="100" src="public/images/" />
-          <img height="100" src="public/images/" />
-          
+          <?php foreach($pictures as $pic): ?>
+          <img height="100" src="public/images/<?php echo $pic->src ?>" />
+          <?php endforeach ?>
           <input type="file" name="picture[]" />
+ 
         </fieldset>
         <input type="submit" value="save"/>
       </fieldset>

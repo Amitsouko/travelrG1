@@ -12,6 +12,7 @@ class Admin_controller{
     echo Views::instance()->render('admin/travels.html');
   }
   
+  
   function create(){
     switch(F3::get('VERB')){
       case 'GET':
@@ -35,10 +36,17 @@ class Admin_controller{
   function edit(){
     switch(F3::get('VERB')){
       case 'GET':
-      
+        $id=F3::get('PARAMS.id');
+        $location=Admin::instance()->getLocation($id);
+        F3::set('location',$location);
+        $pictures=Admin::instance()->getPictures($location->id);
+        F3::set('pictures',$pictures);
+        echo Views::instance()->render('admin/travel.html');
       break;
       case 'POST':
-      
+        $id=F3::get('PARAMS.id');
+        Admin::instance()->edit($id);
+        F3::reroute('/admin/dashboard');
       break;
     }
   }
