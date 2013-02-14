@@ -29,7 +29,8 @@ class Admin_controller{
         }
         if($user=Admin::instance()->login(F3::get('POST.userName'),F3::get('POST.pw'))){
           F3::set('SESSION.userId',$user->id);
-          F3::set('SESSION.userName',$user->userName);
+          F3::set('SESSION.firstname',$user->firstname);
+          F3::set('SESSION.lastname',$user->lastname);
           F3::reroute('/admin/dashboard');
           return;
         }
