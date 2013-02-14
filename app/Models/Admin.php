@@ -8,11 +8,7 @@ class Admin extends Prefab{
   
   function login($id,$pw){
     $user=new DB\SQL\Mapper(F3::get('dB'),'users');
-    $user->load(array('userName=? and pw=?',$id,md5($pw)));
-    if($user->dry()){
-      return false;
-    }
-    return $user;
+    return $user->load(array('userName=? and pw=?',$id,md5($pw)));
   }
   
   function getAllLocation(){
